@@ -1,0 +1,38 @@
+<p><strong>Lowest Temperature is <%= @forecast_data_result.values.first %> on <%= @forecast_data_result.keys.first %></strong></p>
+<p><strong>Highest Temperature is <%= @forecast_data_result.values.last %> on <%= @forecast_data_result.keys.last %></strong></p>
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+<script>
+$(document).ready(function(){
+     Highcharts.chart('container', {
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: 'Temperature forecast'
+        },        
+        yAxis: {
+            title: {
+                text: 'Temperature (°C)'
+            }
+        },
+        xAxis: {
+            categories: <%= raw @forecast_data_result.keys %>,
+            title: {
+                text: 'Time and Date'
+            }
+        },        
+        plotOptions: {
+            line: {
+                dataLabels: {
+                    enabled: true
+                },
+                enableMouseTracking: true
+            }
+        },
+        series: [{
+            name: 'Bangalore',
+            data: <%= @forecast_data_result.values %>
+        }]
+    });
+});
+</script>

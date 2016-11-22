@@ -1,0 +1,16 @@
+default: &default
+  adapter: postgresql
+  host: localhost
+  username: postgres
+  password: tejaswi4carma
+  pool: 5
+  timeout: 5000
+
+
+development: 
+  <<: *default
+  database: sci_dev
+
+production:
+  <<: *default
+  database: sci_dev
